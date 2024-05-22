@@ -7,9 +7,11 @@ import com.sparta.todoapp.repository.TodoRepository;
 import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.BadRequestException;
+
 import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
+
 
 @Service
 @AllArgsConstructor //생성자 모든파라미터가 주입받을 수 있는 생성자 만들기
@@ -48,5 +50,21 @@ public class TodoService {
 
 
         return todoRepository.save(todo);
+    }
+
+    public Todo checkPWAndGetTodo(Long todoId, String password) {
+        Todo todo = getTodo(todoId);
+
+        //비번체크
+        if (todo.getPassword() != null && !Objects.equals(todo.getPassword(), password)) {
+            throw new IllegalArgumentException();
+        }
+        return todo;
+    }
+
+
+    public void deleteTodo(Long todoId, String password) {
+        Todo todo = checkPWAndGetTodo(todoId, password );
+        todoRepository.delete(todo);
     }
 }
