@@ -8,9 +8,11 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class Todo {
 
     @Id // <- 이 어노테이션을 통해 이 필드를 id로 쓰겠다 명시
