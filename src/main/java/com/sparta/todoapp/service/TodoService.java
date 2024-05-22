@@ -5,7 +5,9 @@ import com.sparta.todoapp.controller.TodoRequestDTO;
 import com.sparta.todoapp.repository.Todo;
 import com.sparta.todoapp.repository.TodoRepository;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,20 @@ public class TodoService {
         return todoRepository.findAll(Sort.by("createdAt").descending());
     }
 
+    //할일 수정
+    public Todo updateTodo(Long todoId, TodoRequestDTO dto) {
+        Todo todo = getTodo(todoId);
 
+        //비번체크
+        if(todo.getPassword() != null && !Objects.equals(todo.getPassword(), dto.getPassword()) ) {
+            throw new IllegalArgumentException();
+        }
+
+        todo.setTitle(dto.getTitle());
+        todo.setContent(dto.getContent());
+        todo.setUserName(dto.getUserName());
+
+
+        return todoRepository.save(todo);
+    }
 }

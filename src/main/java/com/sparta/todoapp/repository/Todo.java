@@ -40,4 +40,16 @@ public class Todo {
         this.password = password;
         this.createdAt = LocalDateTime.now();
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
