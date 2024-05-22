@@ -4,7 +4,9 @@ package com.sparta.todoapp.service;
 import com.sparta.todoapp.controller.TodoRequestDTO;
 import com.sparta.todoapp.repository.Todo;
 import com.sparta.todoapp.repository.TodoRepository;
+import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,4 +25,11 @@ public class TodoService {
     public Todo getTodo(Long todoId) {
        return todoRepository.findById(todoId).orElseThrow(IllegalArgumentException::new);
     }
+
+    //목록조회
+    public List<Todo> getTodos() {
+        return todoRepository.findAll(Sort.by("createdAt").descending());
+    }
+
+
 }
