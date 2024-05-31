@@ -1,14 +1,22 @@
-package com.sparta.todoapp.repository;
+package com.sparta.todoapp.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import net.sf.jsqlparser.statement.comment.Comment;
+import org.hibernate.annotations.Comments;
 
 @Getter
 @Entity
@@ -31,6 +39,12 @@ public class Todo {
 
     private LocalDateTime createdAt; //작성일
 
+    @OneToMany(mappedBy = "todo")
+    private List<Todo> comments = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Builder
     public Todo(String title, String content, String userName, String password) {

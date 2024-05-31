@@ -1,6 +1,6 @@
-package com.sparta.todoapp.controller;
+package com.sparta.todoapp.dto;
 
-import com.sparta.todoapp.repository.Todo;
+import com.sparta.todoapp.entity.Todo;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;

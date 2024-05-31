@@ -1,8 +1,9 @@
 package com.sparta.todoapp.controller;
 
 import com.sparta.todoapp.CommonResponse;
-import com.sparta.todoapp.repository.Todo;
-import com.sparta.todoapp.repository.TodoRepository;
+import com.sparta.todoapp.dto.TodoRequestDTO;
+import com.sparta.todoapp.dto.TodoResponseDTO;
+import com.sparta.todoapp.entity.Todo;
 import com.sparta.todoapp.service.TodoService;
 import java.util.List;
 import java.util.stream.Collectors;
